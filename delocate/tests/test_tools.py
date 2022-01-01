@@ -55,6 +55,24 @@ def test_back_tick() -> None:
         back_tick('python -c "raise ValueError()"')
 
 
+def test_otool_version():
+    which = subprocess.run(
+        ["sh", "-c", "ls -al $(which otool)"],
+        check=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        universal_newlines=True,
+    ).stdout
+    version = subprocess.run(
+        ["otool", "--version"],
+        check=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        universal_newlines=True,
+    ).stdout
+    assert version is None, which + "\n" + version
+
+
 def test_uniqe_by_index():
     assert_equal(unique_by_index([1, 2, 3, 4]), [1, 2, 3, 4])
     assert_equal(unique_by_index([1, 2, 2, 4]), [1, 2, 4])

@@ -85,7 +85,7 @@ jobs:
           - os: "macos-11"
             xcode: "13.0"
           - os: "macos-12"
-            xcode: "14.0"
+            xcode: "14.0-beta"
     steps:
       - uses: maxim-lobanov/setup-xcode@v1
         with:
